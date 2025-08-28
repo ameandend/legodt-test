@@ -1,0 +1,230 @@
+:root {
+    --font-color-base: #1a1a1a;
+    --color-primary: #ef4da2;
+    --color-secondary: #e1cb20;
+}
+
+body {
+    background: #f5f5f5;
+    font-family: "Outfit", sans-serif;
+    font-size: 16px;
+    color: var(--font-color-base)
+}
+
+.inner {
+    max-width: 1600px;
+    background: rgba(0, 255, 0, 0.3);
+    margin: 0 auto;
+    /* 화면해상도에 따라 여백 주는게 다름 ~.~ 
+    가운데 정렬(margin)해도 padding값 주기
+    common.css 공통사항에 box-sizing: border-box;없으면 105%화면이됨으로 주의 */
+    padding: 0 2.5%;
+}
+
+.wide-inner {
+    width: 100%;
+    /* 확인용 색칠
+    background: rgba(255, 0, 0, 0.1); */
+    /* box-sizing으로 감싸져잇는게 아니라 왼쪽 오른쪽 여백 설정 */
+    padding: 0 2.5%;
+    position: relative;
+}
+
+
+header {
+    height: 70px;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+
+    /* >.wide-inner {
+        >div {
+            position: absolute;
+            /* 가운데 만들기 /
+            top: 50%;
+            /* 높이 가운데 만들기 /
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            gap: 40px;
+
+            /* &는 부모선택 /
+            &.header-left {
+                left: 2.5%;
+            }
+
+            &.header-right {
+                right: 2.5%;
+            }
+
+            >ul {
+                display: flex;
+                gap: 24px;
+            }
+        }
+    } */
+}
+
+
+
+/* 로고 가운데 보내기 */
+.logo {
+    text-align: center;
+    line-height: 70px;
+}
+.logo img {
+    /* common.css에 있는 middle값 무효화-basline (기본값) */
+    vertical-align: baseline;
+}
+
+
+/* header 안에 nesting 중복으로 주석처리 */
+
+/*.header-left 랑 .header-left 의 공통사항 */
+header>.wide-inner>div {
+    position: absolute;
+    /* 가운데 만들기 */
+    top: 50%;
+    /* 높이 가운데 만들기 */
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 40px;
+
+}
+
+/* header-left header-right 분리 absolute 설정 */
+header>.wide-inner>.header-left {
+    left: 2.5%;
+}
+
+header>.wide-inner>.header-right {
+    right: 2.5%;
+}
+
+
+/* .header-left ul 랑 .header-right ul 의 공통사항 */
+header>.wide-inner>div>ul {
+    display: flex;
+    gap: 24px;
+
+}
+
+header>.wide-inner>div>ul>li {
+    position: relative;
+}
+
+/* 마우스 호버했을때 서브메뉴 보이게 하기 */
+header>.wide-inner>div>ul>li:hover .sub-wrap {
+    display: block;
+}
+
+
+/* >를 쓰면 메인메뉴만  " "띄어쓰기 쓰면 서브메뉴까지 다 바뀌니까 주의 */
+header>.wide-inner>div>ul>li>a {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.gnb-icon>li {}
+
+.gnb-icon>li>a span {
+    background: var(--color-primary);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    font-size: 10px;
+    color: white;
+    /* 글씨 가운데로 보내기 -한줄만가능
+    text-align: center;
+    line-height: 22px; */
+    /* 글씨 가운데로 보내기 2 -여러줄가능 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    top: -11px;
+    right: -11px;
+
+}
+
+.sub-wrap {
+    /* 초기엔 서브메뉴 숨기고 작업하기 */
+    display: none;
+    position: absolute;
+    border: 1px solid #ededed;
+    /* 표시 확인용
+    border: 1px solid dodgerblue; */
+    padding: 16px;
+    background: #fff;
+    border-radius: 8px;
+    line-height: 1.8;
+    font-size: 0.85rem;
+    /* 반영하기위해서는 상위 li에 position 값변경 (relative */
+    left: 50%;
+    /* 상위메뉴의 50%되는만큼 옮겨줘야함 */
+    transform: translateX(-50%);
+}
+
+
+main {
+    height: 600px;
+}
+
+footer {
+    background: #b59274;
+    padding: 50px 0;
+    color: #fff;
+}
+
+.footer-top,
+.footer-bottom {
+    display: flex;
+    /* 두개 나눠서 왼쪽 오른쪽으로 붙이기 */
+    justify-content: space-between;
+    gap: 200px;
+}
+
+.company-info h2 {
+    font-size: 1rem;
+}
+
+.company-info address {
+    font-size: 12px;
+    margin: 20px 0 0;
+    line-height: 1.8;
+}
+
+.company-info address>span {
+    /* 인라인 요소들은 마진 위아래 적용X 오왼가능 */
+    margin-right: 20px;
+}
+
+.footer-menu {
+    display: flex;
+    /* flex설정후 자식 떨어뜨리기 */
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    /* 옆에만 여백주기 column-gap */
+    column-gap: 50px;
+
+}
+
+.footer-menu>li {
+    width: 30%;
+}
+
+.footer-bottom {
+    margin-top: 100px;
+}
+
+.sns-list {
+    display: flex;
+    align-items: center;
+}
+
+.sns-list>li {}
+
+.sns-list>.es-mark img {
+    height: 32px;
+}
